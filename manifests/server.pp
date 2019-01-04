@@ -16,22 +16,22 @@
 #
 
 class gocd::server (
-  $package_name    = 'go-server',
-  $package_ensure  = 'installed',
-  $service_name    = 'go-server',
-  $service_ensure  = 'running',
-  $service_enable  = true,
-  $manage_service  = true,
-  $manage_package  = true,
-  $manage_firewall = true,
-  $listen_port     = 8153,
-  $listen_port_ssl = 8154,
-  $jvm_min_memory  = undef,
-  $jvm_max_memory  = undef,
-  $ssl_certificate = undef,
-  $ssl_private_key = undef,
-  $ssl_ca_cert     = undef,
-  $users           = {},
+  String $package_name    = 'go-server',
+  String $package_ensure  = 'installed',
+  String $service_name    = 'go-server',
+  String $service_ensure  = 'running',
+  Boolean $service_enable  = true,
+  Boolean $manage_service  = true,
+  Boolean $manage_package  = true,
+  Boolean $manage_firewall = true,
+  Integer $listen_port     = 8153,
+  Integer $listen_port_ssl = 8154,
+  String $jvm_min_memory  = '256m',
+  String $jvm_max_memory  = '512m',
+  String $ssl_certificate = '',
+  String $ssl_private_key = '',
+  String $ssl_ca_cert     = '',
+  Hash $users             = {},
 ) {
   # Fail fast if we're not using a new Puppet version.
   if versioncmp($::puppetversion, '3.7.0') < 0 {

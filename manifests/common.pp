@@ -16,14 +16,10 @@
 #
 
 class gocd::common (
-  $manage_dependencies = true,
-  $manage_repository   = true,
-  $manage_user         = true,
+  Boolean $manage_dependencies = true,
+  Boolean $manage_repository   = true,
+  Boolean $manage_user         = true,
 ) {
-  validate_bool($manage_dependencies)
-  validate_bool($manage_repository)
-  validate_bool($manage_user)
-
   if $manage_dependencies {
     contain '::gocd::common::dependencies'
   }

@@ -18,12 +18,9 @@
 define gocd::server::plugin (
   $source,
 ) {
-  validate_string($name)
-  validate_string($source)
 
-  $name_regex = '^[a-z0-9_-]{3,32}$'
   $name_error = "The plugin name '${name}' is not valid."
-  validate_re($name, $name_regex, $name_error)
+  validate_legacy('Optional[String]', 'validate_re', $name, ['^[a-z0-9_-]{3,32}$'])
 
   archive { "/var/lib/go-server/plugins/external/${name}.jar":
     ensure  => present,
