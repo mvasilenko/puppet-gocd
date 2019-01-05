@@ -28,9 +28,9 @@ class gocd::server (
   Integer $listen_port_ssl = 8154,
   String $jvm_min_memory  = '256m',
   String $jvm_max_memory  = '512m',
-  String $ssl_certificate = '',
-  String $ssl_private_key = '',
-  String $ssl_ca_cert     = '',
+  $ssl_certificate = undef,
+  $ssl_private_key = undef,
+  $ssl_ca_cert = undef,
   Hash $users             = {},
 ) {
   # Fail fast if we're not using a new Puppet version.

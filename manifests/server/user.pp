@@ -16,7 +16,7 @@
 #
 
 define gocd::server::user (
-  $password,
+  $password = undef,
 ) {
 
   $name_regex = '^[a-z0-9_-]{3,16}$'
