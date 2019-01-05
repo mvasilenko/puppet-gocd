@@ -30,8 +30,8 @@ class gocd::agent (
   String $jvm_max_memory  = '512m',
 ) {
   # Fail fast if we're not using a new Puppet version.
-  if versioncmp($::puppetversion, '3.7.0') < 0 {
-    fail('This module requires the use of Puppet v3.7.0 or newer.')
+  if versioncmp($::puppetversion, '4.4.0') < 0 {
+    fail('This module requires the use of Puppet v4.4.0 or newer.')
   }
 
   contain '::gocd::common'
