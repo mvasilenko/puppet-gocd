@@ -18,8 +18,6 @@
 define gocd::server::user (
   $password = undef,
 ) {
-  validate_string($name)
-  validate_string($password)
 
   $name_regex = '^[a-z0-9_-]{3,16}$'
   $name_error = "The username '${name}' is not valid."

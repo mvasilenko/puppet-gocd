@@ -17,21 +17,21 @@
 
 class gocd::agent (
   $server,
-  $package_name    = 'go-agent',
-  $package_ensure  = 'installed',
-  $service_name    = 'go-agent',
-  $service_ensure  = 'running',
-  $service_enable  = true,
-  $manage_service  = true,
-  $manage_package  = true,
-  $server_ssl_port = 8154,
-  $server_port     = 8153,
-  $jvm_min_memory  = undef,
-  $jvm_max_memory  = undef,
+  String $package_name    = 'go-agent',
+  String $package_ensure  = 'installed',
+  String $service_name    = 'go-agent',
+  String $service_ensure  = 'running',
+  Boolean $service_enable  = true,
+  Boolean $manage_service  = true,
+  Boolean $manage_package  = true,
+  Integer $server_ssl_port = 8154,
+  Integer $server_port     = 8153,
+  String $jvm_min_memory  = '256m',
+  String $jvm_max_memory  = '512m',
 ) {
   # Fail fast if we're not using a new Puppet version.
-  if versioncmp($::puppetversion, '3.7.0') < 0 {
-    fail('This module requires the use of Puppet v3.7.0 or newer.')
+  if versioncmp($::puppetversion, '4.4.0') < 0 {
+    fail('This module requires the use of Puppet v4.4.0 or newer.')
   }
 
   contain '::gocd::common'

@@ -21,13 +21,11 @@ class gocd::server::config {
   }
 
   if $::gocd::server::jvm_min_memory != undef {
-    validate_string($::gocd::server::jvm_min_memory)
-    validate_re($::gocd::server::jvm_min_memory, '^\d+[KkGgMm]$')
+    validate_legacy('Optional[String]', 'validate_re', $::gocd::server::jvm_min_memory, ['^\d+[KkGgMm]$'])
   }
 
   if $::gocd::server::jvm_max_memory != undef {
-    validate_string($::gocd::server::jvm_max_memory)
-    validate_re($::gocd::server::jvm_max_memory, '^\d+[KkGgMm]$')
+    validate_legacy('Optional[String]', 'validate_re', $::gocd::server::jvm_max_memory, ['^\d+[KkGgMm]$'])
   }
 
   file { '/etc/default/go-server':
@@ -49,7 +47,7 @@ class gocd::server::config {
     $keystore_password = 'serverKeystorepa55w0rd'
 
     java_ks { 'cruise:/etc/go/keystore':
-      ensure      => latest,
+      ensure      => present,
       certificate => $::gocd::server::ssl_certificate,
       private_key => $::gocd::server::ssl_private_key,
       password    => $keystore_password,
@@ -57,7 +55,7 @@ class gocd::server::config {
 
     if $::gocd::server::ssl_ca_cert {
       java_ks { 'cruise:/etc/go/truststore':
-        ensure       => latest,
+        ensure       => present,
         certificate  => $::gocd::server::ssl_ca_cert,
         password     => $keystore_password,
         trustcacerts => true,
